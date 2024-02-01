@@ -13,7 +13,25 @@ import os
 import random
 import torch
 
+def set_seed(seed: int = 42) -> None:
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    # When running on the CuDNN backend, two further options must be set
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    # Set a fixed value for the hash seed
+    os.environ["PYTHONHASHSEED"] = str(seed)
 
+    tf.random.set_seed(seed)
+    tf.experimental.numpy.random.seed(seed)
+    # tf.set_random_seed(seed)
+    # When running on the CuDNN backend, two further options must be set
+    os.environ['TF_CUDNN_DETERMINISTIC'] = '1'
+    # os.environ['TF_DETERMINISTIC_OPS'] = '1'
+    # Set a fixed value for the hash seed
+    print(f"Random seed set as {seed}")
 
 def reinforce_robust(config):
     """Optimizes over designs x in an offline optimization problem
@@ -24,6 +42,7 @@ def reinforce_robust(config):
     config: dict
         a dictionary of hyper parameters such as the learning rate
     """
+    set_seed(135)
     logger = Logger(config['logging_dir'])
     # task = StaticGraphTask(config['task'], **config['task_kwargs'])
     hacked = dict()

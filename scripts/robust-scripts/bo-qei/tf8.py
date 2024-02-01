@@ -11,7 +11,7 @@ for omega_mu_bound in [1e-3]:
             for folder in os.listdir(path_origin):
                 if os.path.isdir(os.path.join(path_origin, folder)):
                     path_hacked_dat = os.path.join(os.path.join(path_origin, folder), 'data/hacked.dat')
-                    os.system(f'CUDA_VISIBLE_DEVICES=1 bo-qei-robust tf-bind-8 --local-dir results/SIRO//bo-qei-robust/tf-bind-8 --cpus 5 \
+                    os.system(f'CUDA_VISIBLE_DEVICES=1 bo-qei-robust tf-bind-8 --local-dir results/BOSS//bo-qei-robust/tf-bind-8 --cpus 5 \
                         --gpus 1 \
                         --num-parallel 1 \
                         --num-samples 1 \

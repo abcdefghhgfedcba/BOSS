@@ -12,7 +12,7 @@ for omega_mu_bound in [1e-3]:
             for folder in os.listdir(path_origin):
                 if os.path.isdir(os.path.join(path_origin, folder)):
                     path_hacked_dat = os.path.join(os.path.join(path_origin, folder), 'data/hacked.dat')
-                    os.system(f'CUDA_VISIBLE_DEVICES=0 gradient-ascent-robust superconductor --local-dir results/SIRO/gradient-ascent-robust/superconductor --cpus 2 \
+                    os.system(f'CUDA_VISIBLE_DEVICES=0 gradient-ascent-robust superconductor --local-dir results/BOSS/gradient-ascent-robust/superconductor --cpus 2 \
                         --gpus 1 \
                         --num-parallel 1 \
                         --num-samples 1 \
